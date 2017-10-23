@@ -56,7 +56,13 @@ export default {
     }),
     submit () {
       this.$validator.validateAll().then(res => {
-        if (res) this.login({ email: this.email, password: this.password })
+        if (res) {
+          this.login({ email: this.email, password: this.password }).then(() => {
+            this.$nuxt.$router.replace({ path: '/' })
+          }).catch(err => {
+            console.log(err)
+          })
+        }
       })
     },
     clear () {

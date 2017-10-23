@@ -14,7 +14,7 @@ const auth = {
     }
   },
   actions: {
-    login ({ commit, redirect }, { email, password }) {
+    login ({ commit }, { email, password }) {
       return fetch('/api/auth/login', {
         credentials: 'same-origin',
         method: 'POST',
@@ -33,16 +33,14 @@ const auth = {
         }
       }).then(authUser => {
         commit('setUser', authUser)
-        redirect('/')
       })
     },
-    logout ({ commit, redirect }) {
+    logout ({ commit }) {
       return fetch('/api/auth/logout', {
         credentials: 'same-origin',
         method: 'POST'
       }).then(() => {
         commit('setUser', null)
-        redirect('/')
       })
     }
   },
