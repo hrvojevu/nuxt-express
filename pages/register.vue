@@ -69,7 +69,7 @@
           ></v-text-field>
         </v-flex>
         <v-flex xs10 offset-xs1>
-          <v-btn primary @click="submit">submit</v-btn>
+          <v-btn color="primary" @click="submit">submit</v-btn>
           <v-btn @click="clear">cancel</v-btn>
         </v-flex>
       </form>

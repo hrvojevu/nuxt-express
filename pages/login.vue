@@ -24,7 +24,7 @@
             counter
             required
           ></v-text-field>
-          <v-btn primary @click="submit()" class="ml-0">login</v-btn>
+          <v-btn color="primary" @click="submit()" class="ml-0">login</v-btn>
           <v-btn @click="clear()">cancel</v-btn>
         </form>
       </v-flex>
