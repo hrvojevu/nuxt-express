@@ -1,20 +1,28 @@
 <template>
-  <section class="container">
-    Admin
-  </section>
+  <users-data-table></users-data-table>
 </template>
 
 <script>
-// import axios from '~/plugins/axios'
+import { mapActions } from 'vuex'
+import UsersDataTable from '../components/UsersDataTable'
 
 export default {
   middleware: 'admin',
-  async asyncData () {
+  mounted () {
+    this.fetchUsers()
+  },
+  components: {
+    UsersDataTable
   },
   head () {
     return {
       title: 'Admin'
     }
+  },
+  methods: {
+    ...mapActions({
+      fetchUsers: 'adminUsers/get'
+    })
   }
 }
 </script>
