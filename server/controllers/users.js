@@ -1,31 +1,36 @@
 const models = require('../models')
 
 function get (req, res, next) {
-  models.User.findAll().then(users => {
-    res.json(users)
-  })
+  models.User.findAll()
+    .then(users => {
+      const clean = users.map(u => u.clean())
+      res.status(200).json({ data: clean })
+    })
+    .catch(next)
 }
 
 function create (req, res, next) {
-  console.log(req)
-  // models.User.create()
+  models.User.create(req.body.user)
+    .then(user => res.status(201).json({ data: user }))
+    .catch(next)
 }
 
 function update (req, res, next) {
+  models.User.update(req.body.user, {
+    where: {
+      id: req.body.user.id
+    }
+  })
+    .then(res.sendStatus(204))
+    .catch(next)
 }
 
-function someShit (req, res, next) {
-  // const id = parseInt(req.params.id)
-  // if (id >= 0 && id < users.length) {
-  //   res.json(users[id])
-  // } else {
-  //   res.sendStatus(404)
-  // }
+function getUser (req, res, next) {
 }
 
 module.exports = {
   get,
   create,
   update,
-  someShit
+  getUser
 }

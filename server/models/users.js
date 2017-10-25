@@ -29,7 +29,7 @@ const User = sequelize.define('User', {
     type: Sequelize.STRING
   },
   contactNumber: {
-    type: Sequelize.INTEGER
+    type: Sequelize.STRING
   },
   sex: {
     type: Sequelize.ENUM,
@@ -38,7 +38,7 @@ const User = sequelize.define('User', {
   dob: {
     type: Sequelize.DATE
   },
-  adress: {
+  address: {
     type: Sequelize.STRING
   },
   expiryDate: {
