@@ -1,16 +1,10 @@
 <template>
-  <header class="text-xs-left pl-0 pr-0">
-    <v-menu offset-y class="hidden-lg-and-up">
-      <v-btn flat dark color="secondary" slot="activator">
-        <v-icon dark large>view_headline</v-icon>
+  <header class="text-xs-right pa-0">
+    <v-menu bottom left class="hidden-lg-and-up">
+      <v-btn icon slot="activator" dark large>
+        <v-icon>more_vert</v-icon>
       </v-btn>
       <v-list>
-        <v-list-tile to="/">
-          <v-list-tile-title>Home</v-list-tile-title>
-        </v-list-tile>
-        <v-list-tile to="/admin">
-          <v-list-tile-title>Admin</v-list-tile-title>
-        </v-list-tile>
         <v-list-tile @click="logout()">
           <v-list-tile-title>Logout</v-list-tile-title>
         </v-list-tile>
