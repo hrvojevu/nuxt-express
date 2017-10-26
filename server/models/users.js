@@ -57,6 +57,7 @@ User.belongsTo(Group, { as: 'group', foreignKey: 'groupId' })
 User.prototype.clean = function () {
   let value = this.toJSON()
   delete value['password']
+  value.fullName = value.firstName + ' ' + value.lastName
   return value
 }
 
