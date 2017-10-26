@@ -6,8 +6,12 @@ const users = {
     users: []
   },
   getters: {
-    all (state, getters) {
-      return state.users
+    all (state) {
+      return state.users.slice().sort((a, b) => {
+        if (a.expiryDate < b.expiryDate) return -1
+        if (a.expiryDate > b.expiryDate) return 1
+        return 0
+      })
     }
   },
   actions: {
