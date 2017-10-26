@@ -21,12 +21,6 @@ import axios from '~/plugins/axios'
 import { mapGetters } from 'vuex'
 
 export default {
-  fetch ({ store }) {
-    return axios.get('/users')
-      .then(res => {
-        store.commit('users/reset', res.data.data)
-      })
-  },
   async asyncData () {
     let { data } = await axios.get('https://jsonplaceholder.typicode.com/users')
     // let { data } = await axios.get('/api/users')
