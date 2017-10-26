@@ -84,8 +84,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      create: 'adminUsers/create',
-      update: 'adminUsers/update'
+      create: 'users/create',
+      update: 'users/update'
     }),
     formatDate (value) {
       return value ? format(value, 'DD.MM.YYYY.') : '-'

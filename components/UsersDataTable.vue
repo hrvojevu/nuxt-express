@@ -77,7 +77,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      users: 'adminUsers/all'
+      users: 'users/all'
     }),
     pages () {
       return this.pagination.rowsPerPage ? Math.ceil(this.users.length / this.pagination.rowsPerPage) : 0
@@ -85,7 +85,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      create: 'adminUsers/create'
+      create: 'users/create'
     }),
     formatDate (value) {
       return value ? format(value, 'DD.MM.YY.') : '-'
