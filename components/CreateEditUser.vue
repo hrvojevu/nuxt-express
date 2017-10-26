@@ -15,6 +15,7 @@
         <v-text-field
           v-model="user.firstName"
           label="First Name"
+          append-icon="account_box"
           :error-messages="errors.collect('firstName')"
           v-validate="'required'"
           data-vv-name="firstName"
@@ -23,6 +24,7 @@
         <v-text-field
           v-model="user.lastName"
           label="Last Name"
+          append-icon="account_box"
           :error-messages="errors.collect('lastName')"
           v-validate="'required'"
           data-vv-name="lastName"
@@ -31,6 +33,7 @@
         <v-text-field
           v-model="user.contactNumber"
           label="Contact Number"
+          append-icon="phone_android"
           :error-messages="errors.collect('contactNumber')"
           v-validate="'numeric'"
           data-vv-name="contactNumber"
@@ -38,15 +41,17 @@
         <v-text-field
           v-model="user.address"
           label="Address"
+          append-icon="home"
           :error-messages="errors.collect('address')"
           data-vv-name="address"
         ></v-text-field>
         <v-layout row wrap v-if="user.id" class="pt-3">
-          <v-flex xs5>
+          <v-flex xs6>
             <p>Expiry date:</p>
+            <v-icon class="mr-2">event</v-icon>
             <span class="expiry-date" :class="[ isActive ? 'active' : 'inactive' ]">{{ formatDate(user.expiryDate) }}</span>
           </v-flex>
-          <v-flex xs4 class="text-xs-left">
+          <v-flex xs6 class="text-xs-right">
             <v-btn fab color="primary" @click="renewMembership()" class="mt-2">
               <v-icon dark>refresh</v-icon>
             </v-btn>

@@ -127,7 +127,7 @@ export default {
   }
 
   .add-btn {
-    position: absolute;
+    position: fixed;
     right: 0;
     bottom: 56px;
   }
