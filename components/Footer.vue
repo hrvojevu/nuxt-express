@@ -14,12 +14,18 @@
       </v-btn>
       <v-btn dark to="/account">
         <span>Account</span>
-        <v-icon>account_circle</v-icon>
+        <v-icon>search</v-icon>
       </v-btn>
       <v-btn dark :to="$nuxt.$store.state.auth.authUser ? '/admin' : '/login'">
         <span>Admin</span>
-        <v-icon>verified_user</v-icon>
+        <v-icon>account_circle</v-icon>
       </v-btn>
     </v-bottom-nav>
   </div>
 </template>
+
+<style lang="scss" scoped>
+span {
+  font-weight: 700;
+}
+</style>
