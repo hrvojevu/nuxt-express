@@ -34,7 +34,7 @@
         <tr @click="dialog = true; user = props.item" class="row">
           <td class="text-xs-left">{{ props.item.firstName + ' ' + props.item.lastName }}</td>
           <td class="text-xs-center">
-            <v-icon dark small :class="[ isActive ? 'active' : 'inactive' ]">fiber_manual_record</v-icon>
+            <v-icon dark small :class="[ isActive(props.item.expiryDate) ? 'active' : 'inactive' ]">fiber_manual_record</v-icon>
           </td>
         </tr>
       </template>
@@ -81,9 +81,6 @@ export default {
     }),
     pages () {
       return this.pagination.rowsPerPage ? Math.ceil(this.users.length / this.pagination.rowsPerPage) : 0
-    },
-    isActive () {
-      return new Date(this.user.expiryDate) > new Date()
     }
   },
   methods: {
@@ -103,6 +100,9 @@ export default {
         contactNumber: '',
         address: ''
       }
+    },
+    isActive (val) {
+      return new Date(val) > new Date()
     }
   }
 }

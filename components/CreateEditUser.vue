@@ -115,6 +115,7 @@ export default {
     },
     clear () {
       this.$validator.reset()
+      this.user.expiryDate = this.initialExpiryDate
       this.initialExpiryDate = null
       this.$emit('close')
     }
