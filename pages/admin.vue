@@ -3,14 +3,10 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 import UsersDataTable from '../components/UsersDataTable'
 
 export default {
   middleware: 'admin',
-  mounted () {
-    this.fetchUsers()
-  },
   components: {
     UsersDataTable
   },
@@ -18,11 +14,6 @@ export default {
     return {
       title: 'Admin'
     }
-  },
-  methods: {
-    ...mapActions({
-      fetchUsers: 'adminUsers/get'
-    })
   }
 }
 </script>
