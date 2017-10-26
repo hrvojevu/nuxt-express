@@ -1,6 +1,6 @@
 <template>
-  <header class="text-xs-right pa-0">
-    <v-menu bottom left class="hidden-lg-and-up">
+  <header class="text-xs-right pa-2">
+    <v-menu v-if="authUser" bottom left class="hidden-lg-and-up">
       <v-btn icon slot="activator" dark large>
         <v-icon>more_vert</v-icon>
       </v-btn>
@@ -15,9 +15,14 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
+  computed: {
+    ...mapGetters({
+      authUser: 'auth/user'
+    })
+  },
   methods: {
     ...mapActions({
       out: 'auth/logout'
