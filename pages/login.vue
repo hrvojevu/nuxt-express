@@ -3,6 +3,7 @@
     <v-layout row wrap>
       <v-flex xs10 offset-xs1 class="text-xs-left">
         <h1 class="pt-2 pb-2">Login</h1>
+        <v-alert v-model="alert.bool" color="warning" icon="priority_high" class="pa-2">{{ alert.message }}</v-alert>
         <form class="form">
           <v-text-field
             light
@@ -11,6 +12,7 @@
             :error-messages="errors.collect('email')"
             v-validate="'required|email'"
             data-vv-name="email"
+            data-vv-delay="500"
             required
           ></v-text-field>
           <v-text-field
@@ -19,6 +21,7 @@
             :error-messages="errors.collect('password')"
             v-validate="'required|min:4'"
             data-vv-name="password"
+            data-vv-delay="500"
             min="4"
             :type="'password'"
             counter
@@ -46,6 +49,7 @@ export default {
   },
   data () {
     return {
+      alert: { bool: false, message: '' },
       email: '',
       password: ''
     }
@@ -60,7 +64,7 @@ export default {
           this.login({ email: this.email, password: this.password }).then(() => {
             this.$nuxt.$router.replace({ path: '/' })
           }).catch(err => {
-            console.log(err)
+            this.alert = { bool: true, message: err }
           })
         }
       })
@@ -77,5 +81,8 @@ export default {
 <style scoped lang="scss">
 .form {
   width: 100%;
+}
+.alert {
+  font-weight: 700;
 }
 </style>

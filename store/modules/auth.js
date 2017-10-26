@@ -1,4 +1,4 @@
-require('whatwg-fetch')
+import axios from '~/plugins/axios'
 
 const auth = {
   namespaced: true,
@@ -15,33 +15,18 @@ const auth = {
   },
   actions: {
     login ({ commit }, { email, password }) {
-      return fetch('/api/auth/login', {
-        credentials: 'same-origin',
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email,
-          password
+      return axios.post('/auth/login', { email, password })
+        .then(res => {
+          commit('setUser', res.data)
+        }).catch(err => {
+          return Promise.reject(err.response.data.error)
         })
-      }).then(res => {
-        if (res.status === 401) {
-          throw new Error('Bad credentials')
-        } else {
-          return res.json()
-        }
-      }).then(authUser => {
-        commit('setUser', authUser)
-      })
     },
     logout ({ commit }) {
-      return fetch('/api/auth/logout', {
-        credentials: 'same-origin',
-        method: 'POST'
-      }).then(() => {
-        commit('setUser', null)
-      })
+      return axios.post('/auth/logout')
+        .then(() => {
+          commit('setUser', null)
+        })
     }
   },
   mutations: {
