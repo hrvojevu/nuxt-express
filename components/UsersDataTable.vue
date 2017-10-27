@@ -96,10 +96,7 @@ export default {
     resetUser () {
       this.user = {
         firstName: '',
-        lastName: '',
-        email: '',
-        contactNumber: '',
-        address: ''
+        lastName: ''
       }
     },
     isActive (val) {
