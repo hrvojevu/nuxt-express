@@ -97,6 +97,7 @@ export default {
       this.user = {
         firstName: '',
         lastName: '',
+        email: '',
         contactNumber: '',
         address: ''
       }

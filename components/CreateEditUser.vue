@@ -31,12 +31,22 @@
           required
         ></v-text-field>
         <v-text-field
+          v-model="user.email"
+          label="Email"
+          append-icon="email"
+          :error-messages="errors.collect('email')"
+          v-validate="'email'"
+          data-vv-name="email"
+          data-vv-delay="500"
+        ></v-text-field>
+        <v-text-field
           v-model="user.contactNumber"
           label="Contact Number"
           append-icon="phone_android"
           :error-messages="errors.collect('contactNumber')"
           v-validate="'numeric'"
           data-vv-name="contactNumber"
+          data-vv-delay="500"
         ></v-text-field>
         <v-text-field
           v-model="user.address"
@@ -45,7 +55,7 @@
           :error-messages="errors.collect('address')"
           data-vv-name="address"
         ></v-text-field>
-        <v-layout row wrap v-if="user.id" class="pt-3">
+        <v-layout row wrap v-if="user.id && !user.isAdmin" class="pt-3">
           <v-flex xs6>
             <p>Expiry date:</p>
             <v-icon class="mr-2">event</v-icon>
