@@ -1,5 +1,6 @@
 <template>
   <section class="container">
+    <h1 class="title">Search</h1>
     <v-text-field append-icon="search"
                   label="Search"
                   v-model="keyword"

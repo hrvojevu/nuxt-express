@@ -12,8 +12,8 @@
         <span>Home</span>
         <v-icon>home</v-icon>
       </v-btn>
-      <v-btn dark to="/account">
-        <span>Account</span>
+      <v-btn dark to="/search">
+        <span>Search</span>
         <v-icon>search</v-icon>
       </v-btn>
       <v-btn dark :to="$nuxt.$store.state.auth.authUser ? '/admin' : '/login'">
