@@ -66,7 +66,7 @@ export default {
       dialog: false,
       search: '',
       pagination: {
-        rowsPerPage: 8
+        rowsPerPage: 7
       },
       selected: [],
       headers: [
@@ -96,7 +96,8 @@ export default {
     resetUser () {
       this.user = {
         firstName: '',
-        lastName: ''
+        lastName: '',
+        expiryDate: null
       }
     },
     isActive (val) {
@@ -121,7 +122,7 @@ export default {
   }
 
   .active {
-    color: $main;
+    color: $success;
   }
 
   .add-btn {
