@@ -24,7 +24,7 @@ const users = {
     update ({ commit }, user) {
       return axios.put('/users', { user })
         .then(res => {
-          commit('update', res.data.data)
+          commit('update', user)
         })
         .catch((e) => {
           // error({ statusCode: 404, message: 'User not found' })
