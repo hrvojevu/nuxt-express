@@ -1,16 +1,27 @@
 <template>
-  <header class="text-xs-right pa-2">
-    <v-menu v-if="authUser" bottom left class="hidden-lg-and-up">
-      <v-btn icon slot="activator" dark large>
-        <v-icon>more_vert</v-icon>
-      </v-btn>
-      <v-list>
-        <v-list-tile @click="logout()">
-          <v-list-tile-title>Logout</v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-menu>
-    </v-snackbar>
+  <header class="pa-2">
+    <v-layout row>
+      <v-flex xs-6 class="text-xs-left">
+        <nuxt-link to="/">
+          <v-avatar>
+            <img src="~assets/img/bk-salona.jpg" alt="Logo">
+          </v-avatar>
+        </nuxt-link>
+      </v-flex>
+      <v-flex xs-6 class="text-xs-right">
+        <v-menu v-if="authUser" bottom class="hidden-lg-and-up">
+          <div slot="activator" class="pa-2 user-action">
+            {{ authUser.firstName }}
+            <v-icon>arrow_drop_down</v-icon>
+          </div>
+          <v-list>
+            <v-list-tile @click="logout()">
+              <v-list-tile-title>Logout</v-list-tile-title>
+            </v-list-tile>
+          </v-list>
+        </v-menu>
+      </v-flex>
+    </v-layout>
   </header>
 </template>
 
@@ -35,3 +46,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.user-action {
+  font-size: 16px;
+  color: #fff;
+  font-weight: 700;
+
+  .icon {
+    color: #fff;
+  }
+}
+</style>
