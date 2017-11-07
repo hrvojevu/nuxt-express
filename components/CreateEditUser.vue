@@ -55,6 +55,39 @@
           :error-messages="errors.collect('address')"
           data-vv-name="address"
         ></v-text-field>
+        <v-menu
+          v-if="!user.id"
+          lazy
+          :close-on-content-click="false"
+          v-model="menu"
+          transition="scale-transition"
+          offset-y
+          full-width
+          :nudge-right="40"
+          max-width="290px"
+          min-width="290px"
+        >
+          <v-text-field
+            slot="activator"
+            label="Expiry Date"
+            v-model="user.expiryDate"
+            append-icon="event"
+            readonly
+          ></v-text-field>
+          <v-date-picker v-model="user.expiryDate"
+                         no-title 
+                         scrollable 
+                         actions
+                         first-day-of-week="1">
+            <template scope="{ save, cancel }">
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn flat color="primary" @click="cancel">Cancel</v-btn>
+                <v-btn flat color="primary" @click="save">OK</v-btn>
+              </v-card-actions>
+            </template>
+          </v-date-picker>
+        </v-menu>
         <v-layout row wrap v-if="user.id && !user.isAdmin" class="pt-3">
           <v-flex xs6>
             <p>Expiry date:</p>
@@ -74,12 +107,14 @@
 
 <script>
 import format from 'date-fns/format'
+import addMonths from 'date-fns/add_months'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
   props: ['dialog', 'initialUser'],
   data () {
     return {
+      menu: false,
       user: Object.assign({}, this.initialUser),
       initialExpiryDate: null
     }
@@ -87,7 +122,7 @@ export default {
   watch: {
     initialUser: function (val) {
       this.user = val
-      if (!this.initialExpiryDate) this.initialExpiryDate = val.expiryDate
+      this.initialExpiryDate = new Date(val.expiryDate)
     }
   },
   computed: {
@@ -106,9 +141,7 @@ export default {
       return value ? format(value, 'DD.MM.YYYY.') : '-'
     },
     renewMembership () {
-      let date = new Date(this.initialExpiryDate)
-      date.setMonth(date.getMonth() + 1)
-      this.user.expiryDate = date
+      this.user.expiryDate = addMonths(new Date(this.initialExpiryDate), 1)
     },
     save () {
       this.$validator.validateAll().then(res => {
@@ -118,9 +151,7 @@ export default {
               this.clear()
             })
           } else {
-            let date = new Date()
-            date.setMonth(date.getMonth() + 1)
-            this.user.expiryDate = date
+            if (!this.user.expiryDate) this.user.expiryDate = addMonths(new Date(), 1)
             this.create(this.user).then(() => {
               this.clear()
             })
@@ -130,7 +161,6 @@ export default {
     },
     clear () {
       this.$validator.reset()
-      this.user.expiryDate = this.initialExpiryDate
       this.initialExpiryDate = null
       this.$emit('close')
     }
