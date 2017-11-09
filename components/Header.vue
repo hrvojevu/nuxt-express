@@ -9,7 +9,7 @@
         </nuxt-link>
       </v-flex>
       <v-flex xs-6 class="text-xs-right">
-        <v-menu v-if="authUser" bottom class="hidden-lg-and-up">
+        <v-menu v-if="authUser" bottom>
           <div slot="activator" class="pa-2 user-action">
             {{ authUser.firstName }}
             <v-icon>arrow_drop_down</v-icon>
@@ -40,7 +40,7 @@ export default {
     }),
     logout () {
       this.out().then(() => {
-        this.$nuxt.$router.replace({ path: '/' })
+        this.$nuxt.$router.replace({ path: '/login' })
       })
     }
   }
