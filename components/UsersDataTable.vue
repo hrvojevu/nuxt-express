@@ -62,7 +62,7 @@ export default {
       dialog: false,
       search: '',
       pagination: {
-        rowsPerPage: 8
+        rowsPerPage: 10
       },
       selected: [],
       headers: [

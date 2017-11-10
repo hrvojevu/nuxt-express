@@ -27,9 +27,4 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../assets/scss/variables';
-
-.container {
-  padding-bottom: $footer-offset;
-}
 </style>
