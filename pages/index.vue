@@ -1,11 +1,28 @@
 <template>
   <section class="container">
-    <h1 class="title">Home</h1>
+    <users-data-table></users-data-table>
   </section>
 </template>
 
 <script>
+import axios from '~/plugins/axios'
+import UsersDataTable from '../components/UsersDataTable'
+
 export default {
+  fetch ({ store }) {
+    return axios.get('/users')
+      .then(res => {
+        store.commit('users/reset', res.data.data)
+      })
+  },
+  components: {
+    UsersDataTable
+  },
+  head () {
+    return {
+      title: 'Admin'
+    }
+  }
 }
 </script>
 
@@ -14,9 +31,5 @@ export default {
 
 .container {
   padding-bottom: $footer-offset;
-
-  .title {
-    margin: 30px 0;
-  }
 }
 </style>
