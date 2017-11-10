@@ -22,12 +22,8 @@
     >
       <template slot="headerCell" scope="props">
         <v-tooltip bottom>
-          <span slot="activator">
-            {{ props.header.text }}
-          </span>
-          <span>
-            {{ props.header.text }}
-          </span>
+          <span slot="activator">{{ props.header.text }}</span>
+          <span>{{ props.header.text }}</span>
         </v-tooltip>
       </template>
       <template slot="items" scope="props">
@@ -66,7 +62,7 @@ export default {
       dialog: false,
       search: '',
       pagination: {
-        rowsPerPage: 7
+        rowsPerPage: 8
       },
       selected: [],
       headers: [
@@ -88,7 +84,7 @@ export default {
       create: 'users/create'
     }),
     formatDate (value) {
-      return value ? format(value, 'DD.MM.YY.') : '-'
+      return value ? format(value, 'DD.MM.YYYY.') : '-'
     },
     editUser (user) {
       this.selectUser(user)
@@ -128,7 +124,7 @@ export default {
   .add-btn {
     position: fixed;
     right: 0;
-    bottom: 56px;
+    bottom: 0px;
   }
 }
 </style>
