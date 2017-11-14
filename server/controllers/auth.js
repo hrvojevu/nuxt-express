@@ -10,7 +10,7 @@ function login (req, res, next) {
     if (user) {
       const authenticated = bcrypt.compareSync(req.body.password, user.password)
       if (authenticated) {
-        req.session.authUser = user
+        req.session.authUser = user.clean()
         return res.json(user.clean())
       } else res.status(401).json({ error: 'Incorrect password' })
     } else res.status(401).json({ error: 'Incorrect email' })
