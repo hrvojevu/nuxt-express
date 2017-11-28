@@ -1,17 +1,27 @@
 <template>
   <div class="datatable-container">
-    <div class="pa-1">
-      <v-text-field
-        append-icon="search"
-        label="Search"
-        single-line
-        hide-details
-        v-model="search"
-      ></v-text-field>
-    </div>
-    <div class="text-xs-right pt-2 pb-2">
-      <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
-    </div>
+    <v-layout wrap row>
+      <v-flex xs6 class="pr-1">
+        <v-select
+          v-bind:items="filters"
+          v-model="selectedFilter"
+          label="Select"
+          single-line
+          item-text="name"
+          item-value="name"
+          return-object
+        ></v-select>
+      </v-flex>
+      <v-flex xs6 class="pl-1">
+        <v-text-field
+          append-icon="search"
+          label="Search"
+          single-line
+          hide-details
+          v-model="search"
+        ></v-text-field>
+      </v-flex>
+    </v-layout>
     <v-data-table
       v-bind:headers="headers"
       v-bind:items="users"
@@ -35,6 +45,9 @@
         </tr>
       </template>
     </v-data-table>
+    <div class="text-xs-left pt-2 pb-2">
+      <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
+    </div>
     <create-edit-user 
       :dialog="dialog"
       :initialUser="user"
@@ -58,13 +71,14 @@ export default {
   },
   data () {
     return {
+      selectedFilter: { name: 'All' },
+      filters: [
+        { name: 'All' }
+      ],
       user: {},
       dialog: false,
       search: '',
-      pagination: {
-        rowsPerPage: 10
-      },
-      selected: [],
+      pagination: { rowsPerPage: 10 },
       headers: [
         { text: 'Name', align: 'left', value: 'name' },
         { text: 'Status', align: 'center', value: 'status' }
@@ -73,10 +87,13 @@ export default {
   },
   computed: {
     ...mapGetters({
-      users: 'users/all'
+      storeUsers: 'users/all'
     }),
     pages () {
       return this.pagination.rowsPerPage ? Math.ceil(this.users.length / this.pagination.rowsPerPage) : 0
+    },
+    users () {
+      return this.storeUsers.filter(u => !u.isAdmin)
     }
   },
   methods: {
