@@ -15,8 +15,11 @@
             <v-icon>arrow_drop_down</v-icon>
           </div>
           <v-list>
+            <v-list-tile to="/settings">
+              <v-list-tile-title><v-icon class="mr-2">settings</v-icon>Settings</v-list-tile-title>
+            </v-list-tile>
             <v-list-tile @click="logout()">
-              <v-list-tile-title>Logout</v-list-tile-title>
+              <v-list-tile-title><v-icon class="mr-2">exit_to_app</v-icon>Logout</v-list-tile-title>
             </v-list-tile>
           </v-list>
         </v-menu>
