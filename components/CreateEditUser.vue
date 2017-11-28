@@ -31,15 +31,6 @@
           required
         ></v-text-field>
         <v-text-field
-          v-model="user.email"
-          label="Email"
-          append-icon="email"
-          :error-messages="errors.collect('email')"
-          v-validate="'email'"
-          data-vv-name="email"
-          data-vv-delay="500"
-        ></v-text-field>
-        <v-text-field
           v-model="user.contactNumber"
           label="Contact Number"
           append-icon="phone_android"
@@ -47,13 +38,6 @@
           v-validate="'numeric'"
           data-vv-name="contactNumber"
           data-vv-delay="500"
-        ></v-text-field>
-        <v-text-field
-          v-model="user.address"
-          label="Address"
-          append-icon="home"
-          :error-messages="errors.collect('address')"
-          data-vv-name="address"
         ></v-text-field>
         <v-menu
           v-if="!user.id"
