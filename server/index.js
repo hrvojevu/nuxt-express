@@ -41,11 +41,13 @@ db.sequelize.sync({ force: true }).then(() => {
   const hash = bcrypt.hashSync('demo', salt)
   User.create({
     externalId: '1',
-    firstName: 'Velika',
-    lastName: 'Manga',
+    firstName: 'Demo',
+    lastName: 'Demo',
+    username: 'demo',
     email: 'demo@mail.com',
     password: hash,
-    isAdmin: true
+    isAdmin: true,
+    role: 'superuser'
   })
 })
 // db.sequelize.sync()

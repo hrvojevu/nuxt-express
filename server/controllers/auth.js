@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 function login (req, res, next) {
   User.find({
     where: {
-      email: req.body.email
+      username: req.body.username
     }
   }).then(user => {
     if (user) {
@@ -13,7 +13,7 @@ function login (req, res, next) {
         req.session.authUser = user.clean()
         return res.json(user.clean())
       } else res.status(401).json({ error: 'Incorrect password' })
-    } else res.status(401).json({ error: 'Incorrect email' })
+    } else res.status(401).json({ error: 'Incorrect username' })
   })
 }
 

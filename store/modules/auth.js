@@ -14,8 +14,8 @@ const auth = {
     }
   },
   actions: {
-    login ({ commit }, { email, password }) {
-      return axios.post('/auth/login', { email, password })
+    login ({ commit }, { username, password }) {
+      return axios.post('/auth/login', { username, password })
         .then(res => {
           commit('setUser', res.data)
         }).catch(err => {

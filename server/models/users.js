@@ -50,6 +50,11 @@ const User = sequelize.define('User', {
   isAdmin: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
+  },
+  role: {
+    defaultValue: 'member',
+    type: Sequelize.ENUM,
+    values: ['member', 'admin', 'superuser']
   }
 }, {
   freezeTableName: true,

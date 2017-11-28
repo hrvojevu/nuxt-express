@@ -7,11 +7,11 @@
         <form class="form">
           <v-text-field
             light
-            v-model="email"
-            label="E-mail"
-            :error-messages="errors.collect('email')"
-            v-validate="'required|email'"
-            data-vv-name="email"
+            v-model="username"
+            label="Username"
+            :error-messages="errors.collect('username')"
+            v-validate="'required'"
+            data-vv-name="username"
             data-vv-delay="500"
             required
           ></v-text-field>
@@ -50,7 +50,7 @@ export default {
   data () {
     return {
       alert: { bool: false, message: '' },
-      email: '',
+      username: '',
       password: ''
     }
   },
@@ -61,7 +61,7 @@ export default {
     submit () {
       this.$validator.validateAll().then(res => {
         if (res) {
-          this.login({ email: this.email, password: this.password }).then(() => {
+          this.login({ username: this.username, password: this.password }).then(() => {
             this.$nuxt.$router.replace({ path: '/' })
           }).catch(err => {
             this.alert = { bool: true, message: err }
@@ -70,7 +70,7 @@ export default {
       })
     },
     clear () {
-      this.email = ''
+      this.username = ''
       this.password = ''
       this.$validator.clean()
     }
