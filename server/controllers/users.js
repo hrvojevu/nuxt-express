@@ -33,13 +33,9 @@ function update (req, res, next) {
     .catch(next)
 }
 
-function getUser (req, res, next) {
-}
-
 module.exports = {
   get,
   create,
   update,
-  getUser,
   clean
 }
