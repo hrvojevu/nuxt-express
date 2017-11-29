@@ -40,7 +40,8 @@
         <tr @click="dialog = true; user = props.item" class="row">
           <td class="text-xs-left">{{ props.item.firstName + ' ' + props.item.lastName }}</td>
           <td class="text-xs-center">
-            <v-icon dark small :class="[ isActive(props.item.expiryDate) ? 'active' : 'inactive' ]">fiber_manual_record</v-icon>
+            <span>{{ formatDate(props.item.expiryDate) }}</span>
+            <v-icon dark small :class="[ isActive(props.item.expiryDate) ? 'active' : 'inactive' ]">event</v-icon>
           </td>
         </tr>
       </template>
@@ -63,7 +64,7 @@
 <script>
 import format from 'date-fns/format'
 import CreateEditUser from './CreateEditUser'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -81,7 +82,7 @@ export default {
       pagination: { rowsPerPage: 10 },
       headers: [
         { text: 'Name', align: 'left', value: 'name' },
-        { text: 'Status', align: 'center', value: 'status' }
+        { text: 'Expiry Date', align: 'center', value: 'expiryDate' }
       ]
     }
   },
@@ -97,14 +98,8 @@ export default {
     }
   },
   methods: {
-    ...mapActions({
-      create: 'users/create'
-    }),
     formatDate (value) {
       return value ? format(value, 'DD.MM.YYYY.') : '-'
-    },
-    editUser (user) {
-      this.selectUser(user)
     },
     resetUser () {
       this.user = {
