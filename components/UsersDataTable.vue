@@ -72,10 +72,8 @@ export default {
   },
   data () {
     return {
-      selectedFilter: { name: 'All' },
-      filters: [
-        { name: 'All' }
-      ],
+      selectedFilter: { name: 'All', id: null },
+      filters: [ { name: 'All', id: null } ],
       user: {},
       dialog: false,
       search: '',
@@ -86,15 +84,22 @@ export default {
       ]
     }
   },
+  created () {
+    this.filters.push.apply(this.filters, this.groups.map(grp => {
+      return { name: grp.name, id: grp.id }
+    }))
+  },
   computed: {
     ...mapGetters({
-      storeUsers: 'users/all'
+      storeUsers: 'users/all',
+      groups: 'groups/all'
     }),
     pages () {
       return this.pagination.rowsPerPage ? Math.ceil(this.users.length / this.pagination.rowsPerPage) : 0
     },
     users () {
-      return this.storeUsers.filter(u => !u.isAdmin)
+      if (this.selectedFilter.id === null) return this.storeUsers.filter(u => !u.isAdmin)
+      else return this.storeUsers.filter(u => u.groupId === this.selectedFilter.id)
     }
   },
   methods: {
@@ -105,7 +110,8 @@ export default {
       this.user = {
         firstName: '',
         lastName: '',
-        expiryDate: null
+        expiryDate: null,
+        groupId: null
       }
     },
     isActive (val) {

@@ -9,11 +9,13 @@ import axios from '~/plugins/axios'
 import UsersDataTable from '../components/UsersDataTable'
 
 export default {
-  fetch ({ store }) {
-    return axios.get('/users')
-      .then(res => {
-        store.commit('users/reset', res.data.data)
-      })
+  async asyncData ({ store }) {
+    let [users, groups] = await Promise.all([
+      axios.get('/users'),
+      axios.get('/groups')
+    ])
+    store.commit('users/reset', users.data.data)
+    store.commit('groups/reset', groups.data.data)
   },
   components: {
     UsersDataTable

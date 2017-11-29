@@ -10,7 +10,7 @@ import axios from '~/plugins/axios'
 import GroupsDataTable from '../components/GroupsDataTable'
 
 export default {
-  fetch ({ store }) {
+  async asyncData ({ store }) {
     return axios.get('/groups')
       .then(res => {
         store.commit('groups/reset', res.data.data)

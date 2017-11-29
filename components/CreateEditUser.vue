@@ -39,6 +39,15 @@
           data-vv-name="contactNumber"
           data-vv-delay="500"
         ></v-text-field>
+        <v-select
+          v-bind:items="groups"
+          v-model="user.groupId"
+          label="Select group"
+          single-line
+          item-text="name"
+          item-value="id"
+          persistent-hint
+        ></v-select>
         <v-menu
           v-if="!user.id"
           lazy
@@ -111,6 +120,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      groups: 'groups/all'
     }),
     isActive () {
       return new Date(this.user.expiryDate) > new Date()
