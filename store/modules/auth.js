@@ -15,7 +15,7 @@ const auth = {
   },
   actions: {
     login ({ commit }, { username, password }) {
-      return axios.post('/auth/login', { username, password })
+      return axios.post('/auth', { username, password })
         .then(res => {
           commit('setUser', res.data)
         }).catch(err => {
@@ -23,10 +23,17 @@ const auth = {
         })
     },
     logout ({ commit }) {
-      return axios.post('/auth/logout')
+      return axios.delete('/auth')
         .then(() => {
           commit('setUser', null)
         })
+    },
+    update ({ commit }, user) {
+      return axios.put('/auth', { user })
+        .then(res => {
+          commit('setUser', user)
+        })
+        .catch((e) => {})
     }
   },
   mutations: {

@@ -40,5 +40,6 @@ module.exports = {
   get,
   create,
   update,
-  getUser
+  getUser,
+  clean
 }
