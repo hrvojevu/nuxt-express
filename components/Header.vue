@@ -15,6 +15,9 @@
             <v-icon>arrow_drop_down</v-icon>
           </div>
           <v-list>
+            <v-list-tile to="/groups">
+              <v-list-tile-title><v-icon class="mr-2">group</v-icon>Groups</v-list-tile-title>
+            </v-list-tile>
             <v-list-tile to="/settings">
               <v-list-tile-title><v-icon class="mr-2">settings</v-icon>Settings</v-list-tile-title>
             </v-list-tile>

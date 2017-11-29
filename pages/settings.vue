@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1 class="title ma-1">Settings</h1></v-flex>
+    <h1 class="title ma-1 mb-4">Settings</h1></v-flex>
     <profile-update></profile-update>
   </section>
 </template>

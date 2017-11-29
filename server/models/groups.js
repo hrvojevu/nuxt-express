@@ -10,6 +10,9 @@ const Group = sequelize.define('Group', {
   name: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  description: {
+    type: Sequelize.TEXT
   }
 }, {
   freezeTableName: true,
