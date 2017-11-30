@@ -1,51 +1,54 @@
 <template>
-  <div class="ma-2">
-    <v-text-field
-      v-model="user.firstName"
-      label="First Name"
-      append-icon="account_box"
-      :error-messages="errors.collect('firstName')"
-      v-validate="'required'"
-      data-vv-name="firstName"
-      required
-    ></v-text-field>
-    <v-text-field
-      v-model="user.lastName"
-      label="Last Name"
-      append-icon="account_box"
-      :error-messages="errors.collect('lastName')"
-      v-validate="'required'"
-      data-vv-name="lastName"
-      required
-    ></v-text-field>
-    <v-text-field
-      name="newPassword"
-      label="New Password"
-      hint="At least 4 characters"
-      v-model="newPassword"
-      min="4"
-      :append-icon="isPwdVisible ? 'visibility' : 'visibility_off'"
-      :append-icon-cb="() => (isPwdVisible = !isPwdVisible)"
-      :type="isPwdVisible ? 'text' : 'password'"
-      counter
-      :error-messages="errors.collect('newPassword')"
-      v-validate="'min:4'"
-      data-vv-name="newPassword"
-    ></v-text-field>
-    <v-text-field
-      label="Repeat Password"
-      hint="At least 4 characters"
-      v-model="repeatPassword"
-      min="4"
-      type="password"
-      counter
-      :error-messages="errors.collect('repeatPassword')"
-      v-validate="'confirmed:newPassword|min:4'"
-      data-vv-name="repeatPassword"
-    ></v-text-field>
+  <v-card class="ma-2 elevation-0">
+    <v-subheader class="subheader">Profile</v-subheader>
+    <v-card-text>
+      <v-text-field
+        v-model="user.firstName"
+        label="First Name"
+        append-icon="account_box"
+        :error-messages="errors.collect('firstName')"
+        v-validate="'required'"
+        data-vv-name="firstName"
+        required
+      ></v-text-field>
+      <v-text-field
+        v-model="user.lastName"
+        label="Last Name"
+        append-icon="account_box"
+        :error-messages="errors.collect('lastName')"
+        v-validate="'required'"
+        data-vv-name="lastName"
+        required
+      ></v-text-field>
+      <v-text-field
+        name="newPassword"
+        label="New Password"
+        hint="At least 4 characters"
+        v-model="newPassword"
+        min="4"
+        :append-icon="isPwdVisible ? 'visibility' : 'visibility_off'"
+        :append-icon-cb="() => (isPwdVisible = !isPwdVisible)"
+        :type="isPwdVisible ? 'text' : 'password'"
+        counter
+        :error-messages="errors.collect('newPassword')"
+        v-validate="'min:4'"
+        data-vv-name="newPassword"
+      ></v-text-field>
+      <v-text-field
+        label="Repeat Password"
+        hint="At least 4 characters"
+        v-model="repeatPassword"
+        min="4"
+        type="password"
+        counter
+        :error-messages="errors.collect('repeatPassword')"
+        v-validate="'confirmed:newPassword|min:4'"
+        data-vv-name="repeatPassword"
+      ></v-text-field>
 
-    <v-btn round color="primary" dark @click="save()">Update</v-btn>
-  </div>
+      <v-btn round color="primary" dark @click="save()">Update</v-btn>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>
@@ -89,3 +92,9 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.subheader {
+  color: rgba(0,0,0,.54);
+}
+</style>
