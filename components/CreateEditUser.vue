@@ -81,7 +81,7 @@
             </template>
           </v-date-picker>
         </v-menu>
-        <v-layout row wrap v-if="user.id && !user.isAdmin" class="pt-3">
+        <v-layout row wrap v-if="user.id" class="pt-3">
           <v-flex xs6>
             <p>Expiry date:</p>
             <v-icon class="mr-2">event</v-icon>
