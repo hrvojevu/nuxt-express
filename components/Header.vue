@@ -12,9 +12,12 @@
         <v-menu v-if="authUser" bottom>
           <div slot="activator" class="pa-2 user-action">
             {{ authUser.firstName }}
-            <v-icon>arrow_drop_down</v-icon>
+            <v-icon large>view_headline</v-icon>
           </div>
           <v-list>
+            <v-list-tile to="/">
+              <v-list-tile-title><v-icon class="mr-2">person</v-icon>Users</v-list-tile-title>
+            </v-list-tile>
             <v-list-tile to="/groups">
               <v-list-tile-title><v-icon class="mr-2">group</v-icon>Groups</v-list-tile-title>
             </v-list-tile>

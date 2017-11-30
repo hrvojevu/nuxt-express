@@ -55,7 +55,7 @@
       @close="dialog = false; resetUser()">
     </create-edit-user>
     <v-btn fab color="primary" @click.native.stop="dialog = true; resetUser()" class="add-btn">
-      <v-icon dark>add</v-icon>
+      <v-icon dark>person_add</v-icon>
     </v-btn>
   </div>
 </template>

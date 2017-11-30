@@ -27,7 +27,7 @@
       @close="dialog = false; resetGroup()">
     </create-edit-group>
     <v-btn fab color="primary" @click.native.stop="dialog = true; resetGroup()" class="add-btn">
-      <v-icon dark>add</v-icon>
+      <v-icon dark>group_add</v-icon>
     </v-btn>
   </div>
 </template>
