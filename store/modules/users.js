@@ -12,6 +12,9 @@ const users = {
         if (a.expiryDate > b.expiryDate) return 1
         return 0
       })
+    },
+    admins (state) {
+      return state.users.filter(u => u.role === 'admin')
     }
   },
   actions: {

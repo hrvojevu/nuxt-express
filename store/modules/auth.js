@@ -9,8 +9,8 @@ const auth = {
     user (state, getters) {
       return state.authUser
     },
-    isAdmin (state, getters) {
-      if (state.authUser) return state.authUser.isAdmin
+    isSuperuser (state, getters) {
+      return state.authUser.role === 'superuser'
     }
   },
   actions: {
