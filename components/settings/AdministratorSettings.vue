@@ -53,7 +53,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../assets/scss/variables';
+@import '../../assets/scss/variables';
 
 .tile {
   border-bottom: 1px solid $gray-light;

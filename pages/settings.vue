@@ -7,8 +7,8 @@
 
 <script>
 import axios from '~/plugins/axios'
-import ProfileUpdate from '~/components/ProfileUpdate'
-import AdministratorSettings from '~/components/AdministratorSettings'
+import ProfileUpdate from '~/components/settings/ProfileUpdate'
+import AdministratorSettings from '~/components/settings/AdministratorSettings'
 import { mapGetters } from 'vuex'
 
 export default {

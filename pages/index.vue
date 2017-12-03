@@ -6,7 +6,7 @@
 
 <script>
 import axios from '~/plugins/axios'
-import UsersDataTable from '../components/UsersDataTable'
+import UsersDataTable from '../components/users/UsersDataTable'
 
 export default {
   async asyncData ({ store }) {

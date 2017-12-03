@@ -7,7 +7,7 @@
 
 <script>
 import axios from '~/plugins/axios'
-import GroupsDataTable from '../components/GroupsDataTable'
+import GroupsDataTable from '../components/groups/GroupsDataTable'
 
 export default {
   async asyncData ({ store }) {
