@@ -51,9 +51,16 @@ function update (req, res, next) {
     .catch(next)
 }
 
+function remove (req, res, next) {
+  User.destroy({ where: { id: req.params.userId } })
+    .then(res.sendStatus(204))
+    .catch(next)
+}
+
 module.exports = {
   get,
   create,
   update,
-  clean
+  clean,
+  remove
 }

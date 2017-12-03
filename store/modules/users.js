@@ -33,7 +33,12 @@ const users = {
           // error({ statusCode: 404, message: 'User not found' })
         })
     },
-    delete ({ commit }, user) {
+    remove ({ commit }, user) {
+      return axios.delete(`/users/${user.id}`)
+        .then(res => {
+          commit('remove', user)
+        })
+        .catch()
     }
   },
   mutations: {
@@ -46,6 +51,12 @@ const users = {
     update: function (state, user) {
       const index = state.users.findIndex(u => u.id === user.id)
       state.users.splice(index, 1, user)
+    },
+    remove: function (state, user) {
+      const index = state.users.findIndex(u => u.id === user.id)
+      if (index !== -1) {
+        state.users.splice(index, 1)
+      }
     }
   }
 }
