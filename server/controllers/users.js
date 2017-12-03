@@ -1,4 +1,5 @@
-const models = require('../models')
+const User = require('../models').User
+const bcrypt = require('bcryptjs')
 
 function clean (obj) {
   Object.keys(obj).forEach(key => {
@@ -8,8 +9,13 @@ function clean (obj) {
   return obj
 }
 
+function generatePwd (plaintext) {
+  const salt = bcrypt.genSaltSync(10)
+  return bcrypt.hashSync(plaintext, salt)
+}
+
 function get (req, res, next) {
-  models.User.findAll()
+  User.findAll()
     .then(users => {
       const clean = users.map(u => u.clean())
       res.status(200).json({ data: clean })
@@ -18,18 +24,30 @@ function get (req, res, next) {
 }
 
 function create (req, res, next) {
-  models.User.create(clean(req.body.user))
-    .then(user => res.status(201).json({ data: user }))
+  const user = clean(req.body.user)
+  if (user.password) {
+    user.password = generatePwd(user.password)
+  }
+  User.create(user)
+    .then(user => res.status(201).json({ data: user.clean() }))
     .catch(next)
 }
 
 function update (req, res, next) {
-  models.User.update(clean(req.body.user), {
-    where: {
-      id: req.body.user.id
-    }
+  const user = clean(req.body.user)
+  if (user.password) {
+    user.password = generatePwd(user.password)
+  }
+  User.update(clean(user), {
+    where: { id: user.id }
   })
-    .then(res.sendStatus(204))
+    .then(() => {
+      delete user['password']
+      if (req.session.authUser.id === user.id) {
+        req.session.authUser = user
+      }
+      res.sendStatus(204)
+    })
     .catch(next)
 }
 

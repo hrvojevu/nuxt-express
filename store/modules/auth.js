@@ -29,7 +29,7 @@ const auth = {
         })
     },
     update ({ commit }, user) {
-      return axios.put('/auth', { user })
+      return axios.put('/users', { user })
         .then(res => {
           commit('setUser', user)
         })

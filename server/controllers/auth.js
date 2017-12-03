@@ -1,5 +1,4 @@
 const User = require('../models').User
-const clean = require('./users').clean
 const bcrypt = require('bcryptjs')
 
 function login (req, res, next) {
@@ -23,23 +22,7 @@ function logout (req, res, next) {
   res.status(200).json({ ok: true })
 }
 
-function update (req, res, next) {
-  const user = clean(req.body.user)
-  if (user.password) {
-    const salt = bcrypt.genSaltSync(10)
-    user.password = bcrypt.hashSync(user.password, salt)
-  }
-  User.update(user, { where: { id: user.id } })
-    .then(() => {
-      delete user['password']
-      req.session.authUser = user
-      res.sendStatus(204)
-    })
-    .catch(next)
-}
-
 module.exports = {
   login,
-  logout,
-  update
+  logout
 }
