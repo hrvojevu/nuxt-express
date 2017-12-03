@@ -11,12 +11,18 @@
               <v-list-tile-title v-html="admin.fullName"></v-list-tile-title>
             </v-list-tile-content>
             <v-list-tile-action>
-              <v-btn fab small color="primary" @click="remove(admin)">
+              <v-btn fab small color="primary" @click="prepDeleteAdmin(admin)">
                 <v-icon dark>delete</v-icon>
               </v-btn>
             </v-list-tile-action>
           </v-list-tile>
       </v-list>
+      <delete-dialog
+        :name="adminObject.fullName"
+        :dialog="deleteDialog"
+        @confirm="deleteAdmin()"
+        @close="deleteDialog = false; adminObject = {}">
+      </delete-dialog>
       <create-admin 
         :dialog="dialog"
         @close="dialog = false">
@@ -28,15 +34,19 @@
 
 <script>
 import CreateAdmin from './CreateAdmin'
+import DeleteDialog from '../common/DeleteDialog'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
   components: {
-    CreateAdmin
+    CreateAdmin,
+    DeleteDialog
   },
   data () {
     return {
-      dialog: false
+      dialog: false,
+      deleteDialog: false,
+      adminObject: {}
     }
   },
   computed: {
@@ -47,7 +57,16 @@ export default {
   methods: {
     ...mapActions({
       remove: 'users/remove'
-    })
+    }),
+    prepDeleteAdmin (admin) {
+      this.deleteDialog = true
+      this.adminObject = admin
+    },
+    deleteAdmin () {
+      this.remove(this.adminObject)
+      this.deleteDialog = false
+      this.adminObject = {}
+    }
   }
 }
 </script>
