@@ -6,11 +6,17 @@
 </template>
 
 <script>
+import axios from '~/plugins/axios'
 import ProfileUpdate from '~/components/ProfileUpdate'
 import AdministratorSettings from '~/components/AdministratorSettings'
 import { mapGetters } from 'vuex'
 
 export default {
+  async asyncData ({ store }) {
+    return axios.get('/users').then(users => {
+      store.commit('users/reset', users.data.data)
+    })
+  },
   components: {
     ProfileUpdate,
     AdministratorSettings
