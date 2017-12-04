@@ -114,7 +114,7 @@ export default {
   },
   watch: {
     initialUser: function (val) {
-      this.user = val
+      this.user = Object.assign({}, val)
       this.initialExpiryDate = new Date(val.expiryDate)
     }
   },
