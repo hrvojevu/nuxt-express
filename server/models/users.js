@@ -47,10 +47,6 @@ const User = sequelize.define('User', {
   expiryDate: {
     type: Sequelize.DATE
   },
-  isAdmin: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false
-  },
   role: {
     defaultValue: 'member',
     type: Sequelize.ENUM,

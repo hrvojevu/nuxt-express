@@ -54,7 +54,7 @@ export default {
     }),
     filtered () {
       return this.users.filter(user => {
-        if (this.keyword !== '' && !user.isAdmin) return user.fullName.toLowerCase().includes(this.keyword.toLowerCase())
+        if (this.keyword !== '' && user.role === 'member') return user.fullName.toLowerCase().includes(this.keyword.toLowerCase())
       })
     }
   },

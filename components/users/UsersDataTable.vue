@@ -98,7 +98,7 @@ export default {
       return this.pagination.rowsPerPage ? Math.ceil(this.users.length / this.pagination.rowsPerPage) : 0
     },
     users () {
-      if (this.selectedFilter.id === null) return this.storeUsers.filter(u => !u.isAdmin)
+      if (this.selectedFilter.id === null) return this.storeUsers.filter(u => u.role === 'member')
       else return this.storeUsers.filter(u => u.groupId === this.selectedFilter.id)
     }
   },

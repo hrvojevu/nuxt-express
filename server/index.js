@@ -46,7 +46,6 @@ db.sequelize.sync({ force: true }).then(() => {
     username: 'demo',
     email: 'demo@mail.com',
     password: hash,
-    isAdmin: true,
     role: 'superuser'
   })
 })

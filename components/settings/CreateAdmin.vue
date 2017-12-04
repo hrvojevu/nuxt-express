@@ -87,7 +87,6 @@ export default {
     save () {
       this.$validator.validateAll().then(res => {
         if (res) {
-          this.user.isAdmin = true
           this.user.role = 'admin'
           this.create(this.user).then(() => {
             this.clear()
