@@ -34,22 +34,7 @@ if (config.dev) {
 // Give nuxt middleware to express
 app.use(nuxt.render)
 
-db.sequelize.sync({ force: true }).then(() => {
-  const User = require('./models/users')
-  const bcrypt = require('bcryptjs')
-  const salt = bcrypt.genSaltSync(10)
-  const hash = bcrypt.hashSync('demo', salt)
-  User.create({
-    externalId: '1',
-    firstName: 'Demo',
-    lastName: 'Demo',
-    username: 'demo',
-    email: 'demo@mail.com',
-    password: hash,
-    role: 'superuser'
-  })
-})
-// db.sequelize.sync()
+db.sequelize.sync()
 
 // Listen the server
 app.listen(port, host)
