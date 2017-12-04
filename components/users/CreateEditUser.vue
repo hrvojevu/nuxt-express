@@ -135,7 +135,7 @@ export default {
       return value ? format(value, 'DD.MM.YYYY.') : '-'
     },
     renewMembership () {
-      this.user.expiryDate = addMonths(new Date(this.initialExpiryDate), 1)
+      this.user.expiryDate = addMonths(new Date(), 1)
     },
     save () {
       this.$validator.validateAll().then(res => {
