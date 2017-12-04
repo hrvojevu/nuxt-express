@@ -19,7 +19,7 @@ module.exports = {
     '~/assets/style/app.styl',
     '~/assets/scss/main.scss'
   ],
-  loading: { color: '#3B8070' },
+  loading: { color: '#424242' },
   build: {
     vendor: ['axios', '~/plugins/vuetify.js', '~/plugins/vee-validate.js'],
     extractCSS: true,

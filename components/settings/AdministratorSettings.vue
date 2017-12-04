@@ -27,7 +27,7 @@
         :dialog="dialog"
         @close="dialog = false">
       </create-admin>
-      <v-btn round color="primary" dark  @click.native.stop="dialog = true">Add</v-btn>
+      <v-btn round color="primary" dark  @click.native.stop="dialog = true" class="ml-3">Add</v-btn>
     </v-card-text>
   </v-card>
 </template>

@@ -9,8 +9,13 @@ html, body {
   margin: 0;
 }
 
+.application {
+  background: url("../img/bg.png");
+}
+
 .container {
   padding: 12px;
+  text-align: center;
 }
 
 h1 {

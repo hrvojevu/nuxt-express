@@ -46,7 +46,7 @@
         data-vv-name="repeatPassword"
       ></v-text-field>
 
-      <v-btn round color="primary" dark @click="save()">Update</v-btn>
+      <v-btn round color="primary" dark @click="save()" class="ml-0">Update</v-btn>
     </v-card-text>
   </v-card>
 </template>
