@@ -43,12 +43,26 @@
             <span>{{ formatDate(props.item.expiryDate) }}</span>
             <v-icon dark small :class="[ isActive(props.item.expiryDate) ? 'active' : 'inactive' ]">event</v-icon>
           </td>
+          <td class="text-xs-center pa-0">
+            <v-btn fab small
+              @click.native.stop="deleteDialog = true; user = props.item"
+              color="primary"
+              class="elevation-0">
+              <v-icon small dark>delete</v-icon>
+            </v-btn>
+          </td>
         </tr>
       </template>
     </v-data-table>
     <div class="text-xs-left pt-2 pb-2">
       <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
     </div>
+    <delete-dialog
+      :name="user.fullName"
+      :dialog="deleteDialog"
+      @confirm="deleteDialog = false; removeUser(user)"
+      @close="deleteDialog = false">
+    </delete-dialog>
     <create-edit-user 
       :dialog="dialog"
       :initialUser="user"
@@ -63,15 +77,18 @@
 
 <script>
 import format from 'date-fns/format'
+import DeleteDialog from '../common/DeleteDialog'
 import CreateEditUser from './CreateEditUser'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   components: {
+    DeleteDialog,
     CreateEditUser
   },
   data () {
     return {
+      deleteDialog: false,
       selectedFilter: { name: 'All', id: null },
       filters: [ { name: 'All', id: null } ],
       user: {},
@@ -80,7 +97,8 @@ export default {
       pagination: { rowsPerPage: 10 },
       headers: [
         { text: 'Name', align: 'left', value: 'name' },
-        { text: 'Expiry Date', align: 'center', value: 'expiryDate' }
+        { text: 'Expiry Date', align: 'center', value: 'expiryDate' },
+        { text: 'Actions', align: 'center', value: 'actions' }
       ]
     }
   },
@@ -103,6 +121,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      remove: 'users/remove'
+    }),
     formatDate (value) {
       return value ? format(value, 'DD.MM.YYYY.') : '-'
     },
@@ -116,6 +137,11 @@ export default {
     },
     isActive (val) {
       return new Date(val) > new Date()
+    },
+    removeUser () {
+      this.remove(this.user).then(() => {
+        this.resetUser()
+      })
     }
   }
 }
