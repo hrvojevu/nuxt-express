@@ -1,14 +1,13 @@
 <template>
   <section class="container">
-    <h1 class="title">
+    <img v-if="error.statusCode === 404" src="~assets/img/404.png" alt="Logo" class="mt-5">
+    <h1 v-else class="status-code mt-5">
       {{ error.statusCode }}
     </h1>
-    <h2 class="info">
+    <h2 class="message">
       {{ error.message }}
     </h2>
-    <nuxt-link class="button" to="/" v-if="error.statusCode === 404">
-      Homepage
-    </nuxt-link>
+    <v-btn v-if="error.statusCode === 404" to="/" color="primary" class="elevation-0">Homepage</v-btn>
   </section>
 </template>
 <script>
@@ -18,19 +17,15 @@ export default {
 </script>
 
 <style lang="scss">
-.title
-{
-  margin-top: 15px;
+@import '../assets/scss/variables';
+
+.status-code {
   font-size: 5em;
+  font-weight: 700;
 }
-.info
-{
-  font-weight: 300;
-  color: #9aabb1;
-  margin: 0;
-}
-.button
-{
-  margin-top: 50px;
+
+.message {
+  font-size: 2em;
+  color: $gray-dark;
 }
 </style>
