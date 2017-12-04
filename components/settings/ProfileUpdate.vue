@@ -1,5 +1,5 @@
 <template>
-  <v-card class="ma-2 elevation-0">
+  <v-card class="elevation-0 text-xs-left">
     <v-subheader class="subheader">Profile</v-subheader>
     <v-card-text>
       <v-text-field

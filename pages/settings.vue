@@ -1,5 +1,6 @@
 <template>
-  <section>
+  <section class="container">
+    <h1 class="title ma-1 mb-4">Settings</h1></v-flex>
     <profile-update></profile-update>
     <administrator-settings v-if="isSuperuser"></administrator-settings>
   </section>

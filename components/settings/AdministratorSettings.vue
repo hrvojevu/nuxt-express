@@ -1,6 +1,6 @@
 <template>
-  <v-card class="ma-2 elevation-0">
-    <v-card-text class="pa-0">
+  <v-card class="mt-2 elevation-0">
+    <v-card-text class="pa-0 text-xs-left">
       <v-list subheader>
         <v-subheader>Administrators</v-subheader>
           <v-list-tile avatar v-for="admin in admins" :key="admin.id" class="tile">
