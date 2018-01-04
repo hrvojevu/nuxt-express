@@ -37,7 +37,7 @@
           :error-messages="errors.collect('contactNumber')"
           v-validate="'numeric'"
           data-vv-name="contactNumber"
-          data-vv-delay="500"
+          data-vv-delay="200"
         ></v-text-field>
         <v-select
           v-bind:items="groups"
