@@ -12,8 +12,10 @@ function login (req, res, next) {
       if (authenticated) {
         req.session.authUser = user.clean()
         return res.json(user.clean())
-      } else res.status(401).json({ error: 'Incorrect password' })
-    } else res.status(401).json({ error: 'Incorrect username' })
+      }
+    }
+
+    return res.status(401).json({ error: 'Neispravna lozinka ili korisničko ime' })
   })
 }
 
