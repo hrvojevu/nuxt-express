@@ -44,7 +44,7 @@ export default {
   },
   head () {
     return {
-      title: 'Login'
+      title: 'Prijava'
     }
   },
   data () {

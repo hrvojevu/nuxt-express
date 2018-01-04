@@ -85,7 +85,7 @@ export default {
   },
   head () {
     return {
-      title: 'Register'
+      title: 'Registracija'
     }
   },
   data () {

@@ -45,7 +45,7 @@ export default {
   },
   head () {
     return {
-      title: 'Account'
+      title: 'Pretraži'
     }
   },
   computed: {

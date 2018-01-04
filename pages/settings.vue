@@ -24,7 +24,7 @@ export default {
   },
   head () {
     return {
-      title: 'Settings'
+      title: 'Postavke'
     }
   },
   computed: {
