@@ -5,16 +5,16 @@
         <v-btn icon @click.native="clear()" dark>
           <v-icon>close</v-icon>
         </v-btn>
-        <v-toolbar-title>{{ user.id ? 'Edit' : 'Add'}} user</v-toolbar-title>
+        <v-toolbar-title>{{ user.id ? 'Izmjeni' : 'Dodaj'}} člana</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
-          <v-btn dark flat @click.native="save()">Save</v-btn>
+          <v-btn dark flat @click.native="save()">spremi</v-btn>
         </v-toolbar-items>
       </v-toolbar>
       <form class="form">
         <v-text-field
           v-model="user.firstName"
-          label="First Name"
+          label="Ime"
           append-icon="account_box"
           :error-messages="errors.collect('firstName')"
           v-validate="'required'"
@@ -23,7 +23,7 @@
         ></v-text-field>
         <v-text-field
           v-model="user.lastName"
-          label="Last Name"
+          label="Prezime"
           append-icon="account_box"
           :error-messages="errors.collect('lastName')"
           v-validate="'required'"
@@ -32,7 +32,7 @@
         ></v-text-field>
         <v-text-field
           v-model="user.contactNumber"
-          label="Contact Number"
+          label="Kontakt broj"
           append-icon="phone_android"
           :error-messages="errors.collect('contactNumber')"
           v-validate="'numeric'"
@@ -42,7 +42,7 @@
         <v-select
           v-bind:items="groups"
           v-model="user.groupId"
-          label="Select group"
+          label="Odaberi grupu"
           single-line
           item-text="name"
           item-value="id"
@@ -62,7 +62,7 @@
         >
           <v-text-field
             slot="activator"
-            label="Expiry Date"
+            label="Datum isteka"
             v-model="user.expiryDate"
             append-icon="event"
             readonly
@@ -75,15 +75,15 @@
             <template scope="{ save, cancel }">
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn flat color="primary" @click="cancel">Cancel</v-btn>
-                <v-btn flat color="primary" @click="save">OK</v-btn>
+                <v-btn flat color="primary" @click="cancel">odustani</v-btn>
+                <v-btn flat color="primary" @click="save">spremi</v-btn>
               </v-card-actions>
             </template>
           </v-date-picker>
         </v-menu>
         <v-layout row wrap v-if="user.id" class="pt-3">
           <v-flex xs6>
-            <p>Expiry date:</p>
+            <p>Datum isteka:</p>
             <v-icon class="mr-2">event</v-icon>
             <span class="expiry-date" :class="[ isActive ? 'active' : 'inactive' ]">{{ formatDate(user.expiryDate) }}</span>
           </v-flex>

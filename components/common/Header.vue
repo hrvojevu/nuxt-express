@@ -16,16 +16,16 @@
           </div>
           <v-list>
             <v-list-tile to="/">
-              <v-list-tile-title><v-icon class="mr-2">person</v-icon>Users</v-list-tile-title>
+              <v-list-tile-title><v-icon class="mr-2">person</v-icon>Članovi</v-list-tile-title>
             </v-list-tile>
             <v-list-tile to="/groups">
-              <v-list-tile-title><v-icon class="mr-2">group</v-icon>Groups</v-list-tile-title>
+              <v-list-tile-title><v-icon class="mr-2">group</v-icon>Grupe</v-list-tile-title>
             </v-list-tile>
             <v-list-tile to="/settings">
-              <v-list-tile-title><v-icon class="mr-2">settings</v-icon>Settings</v-list-tile-title>
+              <v-list-tile-title><v-icon class="mr-2">settings</v-icon>Postavke</v-list-tile-title>
             </v-list-tile>
             <v-list-tile @click="logout()">
-              <v-list-tile-title><v-icon class="mr-2">exit_to_app</v-icon>Logout</v-list-tile-title>
+              <v-list-tile-title><v-icon class="mr-2">exit_to_app</v-icon>Odjava</v-list-tile-title>
             </v-list-tile>
           </v-list>
         </v-menu>

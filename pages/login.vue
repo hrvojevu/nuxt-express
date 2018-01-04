@@ -2,13 +2,13 @@
   <v-container grid-list-md text-xs-center>
     <v-layout row wrap>
       <v-flex xs10 offset-xs1 class="text-xs-left">
-        <h1 class="pt-2 pb-2">Login</h1>
+        <h1 class="pt-2 pb-2">Prijava</h1>
         <v-alert v-model="alert.bool" color="warning" icon="priority_high" class="pa-2">{{ alert.message }}</v-alert>
         <form class="form">
           <v-text-field
             light
             v-model="username"
-            label="Username"
+            label="Korisničko ime"
             :error-messages="errors.collect('username')"
             v-validate="'required'"
             data-vv-name="username"
@@ -17,7 +17,7 @@
           ></v-text-field>
           <v-text-field
             v-model="password"
-            label="Password"
+            label="Lozinka"
             :error-messages="errors.collect('password')"
             v-validate="'required|min:4'"
             data-vv-name="password"
@@ -27,8 +27,8 @@
             counter
             required
           ></v-text-field>
-          <v-btn color="primary" @click="submit()" class="ml-0">login</v-btn>
-          <v-btn @click="clear()">cancel</v-btn>
+          <v-btn color="primary" @click="submit()" class="ml-0">prijavi</v-btn>
+          <v-btn @click="clear()">odustani</v-btn>
         </form>
       </v-flex>
     </v-layout>

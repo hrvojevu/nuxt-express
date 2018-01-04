@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <h1 class="title ma-1 mb-4">Groups</h1></v-flex>
+    <h1 class="title ma-1 mb-4">Grupe</h1>
     <groups-data-table></groups-data-table>
   </section>
 </template>

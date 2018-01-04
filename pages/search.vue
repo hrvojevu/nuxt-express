@@ -1,8 +1,8 @@
 <template>
   <section class="container">
-    <h1 class="title">Search</h1>
+    <h1 class="title">Pretraži</h1>
     <v-text-field append-icon="search"
-                  label="Search"
+                  label="Pretraži"
                   v-model="keyword"
                   single-line
                   hide-details></v-text-field>

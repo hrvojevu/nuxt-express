@@ -5,7 +5,7 @@
         <v-select
           v-bind:items="filters"
           v-model="selectedFilter"
-          label="Select"
+          label="Odabir"
           single-line
           item-text="name"
           item-value="name"
@@ -15,7 +15,7 @@
       <v-flex xs6 class="pl-1">
         <v-text-field
           append-icon="search"
-          label="Search"
+          label="Pretraži"
           single-line
           hide-details
           v-model="search"
@@ -96,9 +96,9 @@ export default {
       search: '',
       pagination: { rowsPerPage: 10 },
       headers: [
-        { text: 'Name', align: 'left', value: 'name' },
-        { text: 'Expiry Date', align: 'center', value: 'expiryDate' },
-        { text: 'Actions', align: 'center', value: 'actions' }
+        { text: 'Puno ime', align: 'left', value: 'name' },
+        { text: 'Datum isteka', align: 'center', value: 'expiryDate' },
+        { text: 'Akcije', align: 'center', value: 'actions' }
       ]
     }
   },

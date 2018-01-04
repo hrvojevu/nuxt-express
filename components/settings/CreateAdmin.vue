@@ -5,16 +5,16 @@
         <v-btn icon @click.native="clear()" dark>
           <v-icon>close</v-icon>
         </v-btn>
-        <v-toolbar-title>Add administrator</v-toolbar-title>
+        <v-toolbar-title>Dodavanje administratora</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
-          <v-btn dark flat @click.native="save()">Save</v-btn>
+          <v-btn dark flat @click.native="save()">spremi</v-btn>
         </v-toolbar-items>
       </v-toolbar>
       <form class="form">
         <v-text-field
           v-model="user.firstName"
-          label="First Name"
+          label="Ime"
           append-icon="account_box"
           :error-messages="errors.collect('firstName')"
           v-validate="'required'"
@@ -23,7 +23,7 @@
         ></v-text-field>
         <v-text-field
           v-model="user.lastName"
-          label="Last Name"
+          label="Prezime"
           append-icon="account_box"
           :error-messages="errors.collect('lastName')"
           v-validate="'required'"
@@ -32,7 +32,7 @@
         ></v-text-field>
         <v-text-field
           v-model="user.username"
-          label="Username"
+          label="Korisničko ime"
           append-icon="account_box"
           :error-messages="errors.collect('username')"
           v-validate="'required'"
@@ -40,8 +40,8 @@
           required
         ></v-text-field>
         <v-text-field
-          label="Password"
-          hint="At least 4 characters"
+          label="Lozinka"
+          hint="Najmanje 4 znaka"
           v-model="user.password"
           min="4"
           :append-icon="isPwdVisible ? 'visibility' : 'visibility_off'"

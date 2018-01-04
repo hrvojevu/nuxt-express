@@ -2,7 +2,7 @@
   <v-card class="mt-2 elevation-0">
     <v-card-text class="pa-0 text-xs-left">
       <v-list subheader>
-        <v-subheader>Administrators</v-subheader>
+        <v-subheader>Administratori</v-subheader>
           <v-list-tile avatar v-for="admin in admins" :key="admin.id" class="tile">
             <v-list-tile-avatar>
               <v-icon large>account_circle</v-icon>
@@ -27,7 +27,7 @@
         :dialog="dialog"
         @close="dialog = false">
       </create-admin>
-      <v-btn round color="primary" dark  @click.native.stop="dialog = true" class="ml-3">Add</v-btn>
+      <v-btn round color="primary" dark  @click.native.stop="dialog = true" class="ml-3">dodaj</v-btn>
     </v-card-text>
   </v-card>
 </template>

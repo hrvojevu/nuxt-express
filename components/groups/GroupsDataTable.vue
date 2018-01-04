@@ -49,7 +49,7 @@ export default {
         rowsPerPage: 10
       },
       headers: [
-        { text: 'Name', align: 'left', value: 'name' }
+        { text: 'Ime', align: 'left', value: 'name' }
       ]
     }
   },

@@ -5,16 +5,16 @@
         <v-btn icon @click.native="clear()" dark>
           <v-icon>close</v-icon>
         </v-btn>
-        <v-toolbar-title>{{ group.id ? 'Edit' : 'Add'}} group</v-toolbar-title>
+        <v-toolbar-title>{{ group.id ? 'Izmjeni' : 'Dodaj'}} grupu</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
-          <v-btn dark flat @click.native="save()">Save</v-btn>
+          <v-btn dark flat @click.native="save()">spremi</v-btn>
         </v-toolbar-items>
       </v-toolbar>
       <form class="form">
         <v-text-field
           v-model="group.name"
-          label="Name"
+          label="Ime"
           append-icon="info"
           :error-messages="errors.collect('name')"
           v-validate="'required'"
@@ -23,10 +23,9 @@
         ></v-text-field>
         <v-text-field
           v-model="group.description"
-          label="Description"
+          label="Opis"
           multi-line
         ></v-text-field>
-        </v-menu>
       </form>
     </v-card>
   </v-dialog>
