@@ -51,6 +51,9 @@ const User = sequelize.define('User', {
     defaultValue: 'member',
     type: Sequelize.ENUM,
     values: ['member', 'admin', 'superuser']
+  },
+  note: {
+    type: Sequelize.TEXT
   }
 }, {
   freezeTableName: true,

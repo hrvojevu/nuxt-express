@@ -49,7 +49,6 @@
           persistent-hint
         ></v-select>
         <v-menu
-          v-if="!user.id"
           lazy
           :close-on-content-click="false"
           v-model="menu"
@@ -58,20 +57,22 @@
           full-width
           :nudge-right="40"
           max-width="290px"
-          min-width="290px"
-        >
+          min-width="290px">
           <v-text-field
             slot="activator"
             label="Datum isteka"
-            v-model="user.expiryDate"
+            v-model="dateFormatted"
+            @blur="user.expiryDate = parseDate(dateFormatted)"
             append-icon="event"
             readonly
           ></v-text-field>
-          <v-date-picker v-model="user.expiryDate"
-                         no-title 
-                         scrollable 
-                         actions
-                         first-day-of-week="1">
+          <v-date-picker
+            v-model="user.expiryDate"
+            @input="dateFormatted = formatDate($event)"
+            no-title
+            scrollable
+            actions
+            first-day-of-week="1">
             <template scope="{ save, cancel }">
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -81,18 +82,11 @@
             </template>
           </v-date-picker>
         </v-menu>
-        <v-layout row wrap v-if="user.id" class="pt-3">
-          <v-flex xs6>
-            <p>Datum isteka:</p>
-            <v-icon class="mr-2">event</v-icon>
-            <span class="expiry-date" :class="[ isActive ? 'active' : 'inactive' ]">{{ formatDate(user.expiryDate) }}</span>
-          </v-flex>
-          <v-flex xs6 class="text-xs-right">
-            <v-btn fab color="primary" @click="renewMembership()" class="mt-2">
-              <v-icon dark>refresh</v-icon>
-            </v-btn>
-          </v-flex>
-        </v-layout>
+        <v-text-field
+          v-model="user.note"
+          label="Bilješke"
+          multi-line>
+        </v-text-field>
       </form>
     </v-card>
   </v-dialog>
@@ -109,13 +103,18 @@ export default {
     return {
       menu: false,
       user: Object.assign({}, this.initialUser),
-      initialExpiryDate: null
+      dateFormatted: null
     }
   },
   watch: {
     initialUser: function (val) {
       this.user = Object.assign({}, val)
-      this.initialExpiryDate = new Date(val.expiryDate)
+      if (val.expiryDate) {
+        this.user.expiryDate = new Date(val.expiryDate)
+        this.dateFormatted = this.formatDate(val.expiryDate)
+      } else {
+        this.dateFormatted = null
+      }
     }
   },
   computed: {
@@ -131,11 +130,16 @@ export default {
       create: 'users/create',
       update: 'users/update'
     }),
+    parseDate (date) {
+      if (!date) {
+        return null
+      }
+
+      const [day, month, year] = date.split('.')
+      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+    },
     formatDate (value) {
       return value ? format(value, 'DD.MM.YYYY.') : '-'
-    },
-    renewMembership () {
-      this.user.expiryDate = addMonths(new Date(), 1)
     },
     save () {
       this.$validator.validateAll().then(res => {
@@ -155,7 +159,6 @@ export default {
     },
     clear () {
       this.$validator.reset()
-      this.initialExpiryDate = null
       this.$emit('close')
     }
   }

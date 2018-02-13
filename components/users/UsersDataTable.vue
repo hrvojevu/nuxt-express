@@ -132,7 +132,8 @@ export default {
         firstName: '',
         lastName: '',
         expiryDate: null,
-        groupId: null
+        groupId: null,
+        note: null
       }
     },
     isActive (val) {
